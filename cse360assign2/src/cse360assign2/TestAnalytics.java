@@ -2,7 +2,7 @@ package cse360assign2;
 
 import java.util.Scanner;
 
-public class assignment2 {
+public class TestAnalytics {
 	public static void main (String[] args)
 	   {
 		boolean debugging = false;
@@ -12,6 +12,7 @@ public class assignment2 {
 		System.out.println("Do you want to debug? enter '0' for no or '1' for yes");
 		debug = scan.nextInt();
 		
+		// debugger
 		if(debug == 0)
 		{
 			debugging = false;
@@ -59,4 +60,5 @@ public class assignment2 {
 		
 	   }
 }
+
 
