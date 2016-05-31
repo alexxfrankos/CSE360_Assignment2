@@ -10,7 +10,6 @@ package cse360assign2;
 
 public class Analytics extends OrderedIntList
 {
-	private boolean debug = false;
 	/** Analytics 
 	 * is the constructor that initializes the debug setting to true or false
 	 * it also makes a call to the super constructor 
@@ -21,8 +20,7 @@ public class Analytics extends OrderedIntList
 	
 	public Analytics(boolean debugging)
 	{
-		super();
-		debug = debugging;
+		super(debugging);
 	}
 	
 	/** Mean

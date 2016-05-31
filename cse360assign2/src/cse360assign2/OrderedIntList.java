@@ -13,12 +13,13 @@ public class OrderedIntList {
 	protected int[] orderedIntList;  
 	protected int NumOfElemInList = 0; 
 	protected int lengthOfList;
+	protected boolean debug = false;
 	
-	OrderedIntList ()
+	public OrderedIntList (boolean debugger)
 	{
 		orderedIntList = new int[10];
 		lengthOfList = orderedIntList.length;
-		
+		debug = debugger;
 	}
 	/** insertIntoList
 	 * Takes in an integer(newListInt), and inserts it in the orderedIntList
@@ -28,14 +29,34 @@ public class OrderedIntList {
 	 */
 	public void insertIntoList (int newListInt) 
 	{
+		if(debug)
+		{
+			System.out.println("debug - insertIntoList");
+			
+		}
 		if(NumOfElemInList == lengthOfList) 
 		{
 			doubleSizeOfArray();
+			
+			if(debug)
+			{
+				System.out.println("debug - NumofElemInList is equal to length of list");
+				System.out.println("debug - NumofElemInList = " + NumOfElemInList);
+				System.out.println("debug - lengthOflist = " + lengthOfList/2);
+				System.out.println("debug - Length of array is now: "+orderedIntList.length);
+			}
+
 		}
 		if(NumOfElemInList == 0)
 		{
 			orderedIntList[0]= newListInt;
 			NumOfElemInList++;
+			
+			if(debug)
+			{
+				System.out.println("debug - this is the first element to be inserted in the list");
+				System.out.println("debug - " + orderedIntList[0]);
+			}
 		}
 		
 		else 
@@ -48,23 +69,51 @@ public class OrderedIntList {
 			{
 				if(newListInt < orderedIntList[listIndex])
 				{
+					
 					foundInsertPosition = true;
+					
+					if(debug)
+					{
+						System.out.println("debug - newListInt < orderedIntList[" + listIndex + "]");
+						System.out.println("debug - foundInsertPosition should be true " + foundInsertPosition);
+					}
 				}
 				else
 				{
 					listIndex++;
 					holdInsertPosition++;
+					
+					if(debug)
+					{
+						System.out.println("debug - listIndex should increment: "+ listIndex);
+						System.out.println("debug - holdInsertPosition should increment: " + holdInsertPosition);
+					}
 				}
 			}
 			
 			for (listIndex = NumOfElemInList; listIndex > holdInsertPosition; listIndex--)
 			{
-			
 				orderedIntList[listIndex] = orderedIntList[listIndex-1];
+				
+				if(debug)
+				{
+					System.out.println("debug - all the postions in array should be shifted");
+					System.out.println("debug - print the array: ");
+					debug = false;
+					printAllValuesInList();
+					debug = true;
+				}
 			}
 		
 			orderedIntList[holdInsertPosition]= newListInt; 
 			NumOfElemInList++;
+			
+			if(debug)
+			{
+				System.out.println("debug - orderedIntList[holdInsertPosition] should be newListInt");
+				System.out.println("debug - orderedIntList[holdInsertPosition] = " + orderedIntList[holdInsertPosition]);
+				System.out.println("debug - newListInt = " + newListInt);
+			}
 		}
 	}
 	
@@ -77,10 +126,21 @@ public class OrderedIntList {
 	{
 		int []tempList = new int[NumOfElemInList*2];
 		lengthOfList = lengthOfList*2;
+		if(debug)
+		{
+			System.out.println("debug - doubleSizeOfArray");
+		}
 		
 		for (int listIndex = 0; listIndex < NumOfElemInList; listIndex++)
 		{
 			tempList[listIndex] = orderedIntList[listIndex];
+			
+			if(debug)
+			{
+				System.out.println("debug - should be copying all values into new array");
+				System.out.println("debug - templist["+listIndex+"] = " + tempList[listIndex]);
+				System.out.println("debug - orderedIntList["+listIndex+"] = " + orderedIntList[listIndex]);
+			}
 		}
 		orderedIntList = tempList;
 	}
@@ -92,6 +152,11 @@ public class OrderedIntList {
 	 */
 	public void printAllValuesInList() 
 	{
+		if(debug)
+		{
+			System.out.println("debug - printAllValuesInList");
+			
+		}
 		for (int listIndex = 0; listIndex < NumOfElemInList; listIndex++) 
 		{
 			if (listIndex % 5 == 0) 
@@ -99,6 +164,11 @@ public class OrderedIntList {
 				System.out.println();
 			}
 			System.out.print(orderedIntList[listIndex] + "\t");	
+			
+			if(debug)
+			{
+				System.out.println("debug - orderedIntList[" + listIndex + "] = "+orderedIntList[listIndex]);
+			}
 		}
 		System.out.println();;
 	}

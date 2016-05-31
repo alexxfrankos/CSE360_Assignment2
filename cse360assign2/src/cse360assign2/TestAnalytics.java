@@ -2,11 +2,13 @@ package cse360assign2;
 
 import java.util.Scanner;
 
-public class TestAnalytics {
+public class TestAnalytics 
+{
 	public static void main (String[] args)
 	   {
 		boolean debugging = false;
 		int debug;
+		
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Do you want to debug? enter '0' for no or '1' for yes");
@@ -24,19 +26,20 @@ public class TestAnalytics {
 		
 		Analytics list = new Analytics(debugging);
 		
-		try{
-			do{
+		try
+		{
+			do
+			{
 				System.out.println("Please Enter an Integer or A letter to stop");
 				int num = scan.nextInt();
 				list.insertIntoList(num);
-			}while(scan.hasNextInt()== true);
+			}
+			while(scan.hasNextInt()== true);
 		}
 		catch(java.util.InputMismatchException e)
 		{
 			
 		}
-		
-
 		
 		list.printAllValuesInList();
 		
